@@ -87,5 +87,6 @@ setup(
         "torchaudio",
         "torchvision",
         "yacs==0.1.8",
+        "PrithviWxC@git+https://github.com/NASA-IMPACT/Prithvi-WxC.git@main#egg=PrithviWxC"
     ],
 )
