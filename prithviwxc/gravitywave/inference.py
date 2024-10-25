@@ -7,8 +7,8 @@ import torch.nn.functional as F
 import tqdm
 import xarray as xr
 
-from datamodule import ERA5DataModule
-from gravity_wave_model import UNetWithTransformer
+from prithviwxc.gravitywave.datamodule import ERA5DataModule
+from prithviwxc.gravitywave.gravity_wave_model import UNetWithTransformer
 from torch.nn.parallel import DistributedDataParallel as DDP
 import torch.distributed as dist
 
