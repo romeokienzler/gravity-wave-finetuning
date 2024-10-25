@@ -12,7 +12,7 @@ This repository contains code and resources for training and inferring gravity w
 
         git clone git@github.com:NASA-IMPACT/gravity-wave-finetuning.git
         cd gravity-wave-finetuning
-        wget https://huggingface.co/datasets/Prithvi-WxC/Gravity_wave_Parameterization/raw/main/config.yaml
+        wget https://huggingface.co/Prithvi-WxC/Gravity_wave_Parameterization/resolve/main/config.yaml
 
 2.	Create and activate a Conda environment for the project:
 
