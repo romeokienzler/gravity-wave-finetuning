@@ -12,8 +12,8 @@ from prithviwxc.gravitywave.gravity_wave_model import UNetWithTransformer
 from torch.nn.parallel import DistributedDataParallel as DDP
 import torch.distributed as dist
 
-local_rank = int(os.environ["LOCAL_RANK"])
-rank = int(os.environ["RANK"])
+local_rank = int(os.getenv("LOCAL_RANK",'0'))
+rank = int(os.getenv("RANK",'0'))
 device = f"cuda:{local_rank}"
 dtype = torch.float32
 
