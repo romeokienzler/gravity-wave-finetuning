@@ -98,6 +98,4 @@ homepage = "https://github.com/NASA-IMPACT/gravity-wave-finetuning"
 [tool.setuptools]
 packages = ["prithviwxc"]
 include-package-data = true
-
-[tool.setuptools.packages.find]
-where = ["prithviwxc"]
+packages.find.where = ["."]
