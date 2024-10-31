@@ -4,7 +4,7 @@ import torch
 import xarray as xr
 from torch.utils.data import DataLoader, Dataset
 from torch.utils.data.distributed import DistributedSampler
-
+import lightning as pl
 
 def get_era5_uvtp122(ds: xr.Dataset, index: int = 0) -> dict[str, torch.Tensor]:
     """Retrieve climate data variables at 122 pressure levels.
@@ -134,7 +134,7 @@ class ERA5Dataset(Dataset):
         return batch
 
 
-class ERA5DataModule:
+class ERA5DataModule(pl.LightningDataModule):
     """
     This module handles data loading, batching, and train/validation splits.
 
@@ -143,7 +143,7 @@ class ERA5DataModule:
         valid_data_path: Path to validation data.
         file_glob_pattern: Pattern to match NetCDF files.
         batch_size: Size of each mini-batch.
-        num_workers: Number of subprocesses for data loading.
+        num_workers: Number of subprocesses for data loading.   
     """
 
     def __init__(
@@ -170,6 +170,9 @@ class ERA5DataModule:
 
         self.batch_size: int = batch_size
         self.num_workers: int = num_data_workers
+
+    def prepare_data(self):
+        pass
 
     def setup(self, stage: str | None = None) -> tuple[Dataset, Dataset]:
         """Sets up the datasets for different stages
