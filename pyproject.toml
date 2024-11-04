@@ -97,5 +97,5 @@ dependencies = [
 homepage = "https://github.com/NASA-IMPACT/gravity-wave-finetuning"
 
 [tool.setuptools]
-packages = ["prithviwxc"]
+packages=["prithviwxc", "prithviwxc.gravitywave"],
 include-package-data = true
