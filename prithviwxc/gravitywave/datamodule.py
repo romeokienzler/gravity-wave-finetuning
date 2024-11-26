@@ -175,23 +175,22 @@ class ERA5DataModule(pl.LightningDataModule):
         pass
 
     def setup(self, stage: str | None = None) -> tuple[Dataset, Dataset]:
-        """Sets up the datasets for different stages
-        (train, validation, predict).
-
-        Args:
-            stage: Stage for which the setup is performed ("fit", "predict").
-        """
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        model_to_return = UNetPincer(backbone).to(device)
         if stage == "fit":
             self.dataset_train = ERA5Dataset(
                 data_path=self.train_data_path, file_glob_pattern=self.file_glob_pattern
             )
+            self.dataset_train = self.dataset_train.to(device)
             self.dataset_val = ERA5Dataset(
                 data_path=self.valid_data_path, file_glob_pattern=self.file_glob_pattern
             )
+            self.dataset_val = self.dataset_val.to(device)
         elif stage == "predict":
             self.dataset_predict = ERA5Dataset(
                 data_path=self.valid_data_path, file_glob_pattern=self.file_glob_pattern
             )
+            self.dataset_predict = self.dataset_predict.to(device)
 
     def train_dataloader(self) -> DataLoader:
         """Returns a DataLoader for the training data."""
