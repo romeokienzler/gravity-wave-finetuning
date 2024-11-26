@@ -192,6 +192,7 @@ class ERA5DataModule(pl.LightningDataModule):
             )
             self.dataset_predict = self.dataset_predict.to(device)
 
+
     def train_dataloader(self) -> DataLoader:
         """Returns a DataLoader for the training data."""
         return DataLoader(
