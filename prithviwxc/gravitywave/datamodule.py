@@ -176,7 +176,6 @@ class ERA5DataModule(pl.LightningDataModule):
 
     def setup(self, stage: str | None = None) -> tuple[Dataset, Dataset]:
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        model_to_return = UNetPincer(backbone).to(device)
         if stage == "fit":
             self.dataset_train = ERA5Dataset(
                 data_path=self.train_data_path, file_glob_pattern=self.file_glob_pattern
